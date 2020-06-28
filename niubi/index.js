@@ -1,5 +1,4 @@
-import yaml from "js-yaml";
-import fs from "fs";
+import sentences from "./sentences.json";
 
 function getRandomSentence(sentences) {
   const index = Math.floor(Math.random() * sentences.length);
@@ -8,8 +7,6 @@ function getRandomSentence(sentences) {
 
 export default function (ctx) {
   const mirai = ctx.mirai;
-  const sentences = yaml.safeLoad(fs.readFileSync(__dirname + "/data.yml"));
-
   mirai.on("message", (msg) => {
     const sentence = getRandomSentence(sentences);
 
