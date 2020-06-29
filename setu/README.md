@@ -1,4 +1,4 @@
-# Setu 色图
+# 色图 setu
 
 - 作者：[@YunYouJun](https://github.com/YunYouJun)
 - 简介：发点色图
