@@ -17,7 +17,7 @@ EBJ: 每个人都有不愿回想的……记忆，而我能感知到这些。 �
 
 收到某指令时，发送一句中二的话。
 
-match 为匹配的方式，下可设置 `is`, `includes`, `re` 基本与 `answer` 部分相同。
+match 为一个数组，可以包含多种匹配的方式，每种方式下均可设置 `is`, `includes`, `re` 基本与 `answer` 部分相同。
 
 params 字段各含义见 [请求参数 | 一言开发者中心](https://developer.hitokoto.cn/sentence/)
 
@@ -34,7 +34,8 @@ hitokoto:
     group:
       - 389401003
   match:
-    is: el say
+    - is: el say
+    - includes: 说点骚话
   params:
     # c:
     # encode:

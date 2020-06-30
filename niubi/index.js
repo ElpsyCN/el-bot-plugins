@@ -1,4 +1,5 @@
 import sentences from "./sentences.json";
+import { re, match } from "mirai-ts/dist/utils/message";
 
 function getRandomSentence(sentences, name) {
   const index = Math.floor(Math.random() * sentences.length);
@@ -6,20 +7,30 @@ function getRandomSentence(sentences, name) {
 }
 
 export default function (ctx) {
+  const niubi = ctx.el.config.niubi;
   const mirai = ctx.mirai;
 
   mirai.on("message", (msg) => {
     let name = "我";
-    if (!msg.plain.toLowerCase().includes("nb")) return;
-    msg.messageChain.some((singleMessage) => {
-      if (singleMessage.type === "At") {
-        name = "「" + singleMessage.display.slice(1) + "」";
-        return true;
-      }
-    });
 
-    const sentence = getRandomSentence(sentences, name);
-    msg.reply(sentence);
+    niubi.match.forEach((obj) => {
+      const str = match(msg.plain.toLowerCase(), obj);
+      if (!str) {
+        return;
+      } else if (Array.isArray(str)) {
+        name = str[1];
+      }
+
+      msg.messageChain.some((singleMessage) => {
+        if (singleMessage.type === "At") {
+          name = "「" + singleMessage.display.slice(1) + "」";
+          return true;
+        }
+      });
+
+      const sentence = getRandomSentence(sentences, name);
+      msg.reply(sentence);
+    });
   });
 
   // 进群时

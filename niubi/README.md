@@ -10,8 +10,24 @@
 云游君: @Niubi nb
 
 EBJ: 世界上没有定理，只有 Niubi 允许其正确的命题。
+
+云游君: 来点群主笑话
+
+EBJ: 世界上没有定理，只有 群主 允许其正确的命题。
 ```
 
 ## 描述
 
 数据来源自 Jeff 笑话、高斯笑话。
+
+## 配置
+
+`match` 见[配置讲解](https://docs.bot.elpsy.cn/js/config.html)。
+
+```yaml
+niubi:
+  match:
+    - re:
+        pattern: 来点(\S*)笑话
+    - includes: nb
+```
