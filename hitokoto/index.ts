@@ -1,7 +1,7 @@
 import axios from "axios";
 import ElBot from "src/bot";
 import { match } from "mirai-ts/dist/utils/message";
-import { MessageType } from "mirai-ts";
+import { MessageType, Config } from "mirai-ts";
 
 import schedule from "node-schedule";
 import { sendMessageByConfig } from "@utils/message";
@@ -28,9 +28,11 @@ export default function (ctx: ElBot) {
   }
 
   mirai.on("message", async (msg: MessageType.SingleMessage) => {
-    if (match(msg.plain, hitokoto.match)) {
-      const words = await getSentence(hitokoto.params);
-      msg.reply(words);
-    }
+    hitokoto.match.forEach(async (obj: Config.Match) => {
+      if (match(msg.plain, obj)) {
+        const words = await getSentence(hitokoto.params);
+        msg.reply(words);
+      }
+    });
   });
 }
