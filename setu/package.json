@@ -1,0 +1,11 @@
+{
+  "name": "setu",
+  "version": "0.0.1",
+  "description": "发点色图",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo '来点色图'"
+  },
+  "author": "YunYouJun",
+  "license": "AGPL-3.0"
+}

@@ -22,10 +22,12 @@ EBJ: 世界上没有定理，只有 群主 允许其正确的命题。
 
 ## 配置
 
-`match` 见[配置讲解](https://docs.bot.elpsy.cn/js/config.html)。
+- `url`: API 地址 或本地 JSON 数据的文件所在路径
+- `match` 见[配置讲解](https://docs.bot.elpsy.cn/js/config.html)。
 
 ```yaml
 niubi:
+  # url: https://el-bot-api.vercel.app/api/niubi
   match:
     - re:
         pattern: 来点(\S*)笑话
