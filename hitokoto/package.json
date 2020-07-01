@@ -1,0 +1,11 @@
+{
+  "name": "hitokoto",
+  "version": "0.0.1",
+  "description": "发一句话",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'el say'"
+  },
+  "author": "YunYouJun",
+  "license": "AGPL-3.0"
+}
