@@ -2,23 +2,34 @@ import sentences from "./sentences.json";
 import { re, match } from "mirai-ts/dist/utils/message";
 import { isUrl } from "../utils";
 import axios from "axios";
+import { renderString } from "@utils/message";
 
 function getRandomSentence(sentences, name) {
   const index = Math.floor(Math.random() * sentences.length);
-  return Function("name", "return `" + sentences[index] + "`")(name);
+  return renderString(sentences[index], name, "name");
 }
 
 export default function (ctx) {
-  const niubi = ctx.el.config.niubi;
+  const config = ctx.el.config;
   const mirai = ctx.mirai;
 
-  const url = niubi.data || "https://el-bot-api.vercel.app/api/niubi";
+  const niubi = config.niubi || {
+    url: "https://el-bot-api.vercel.app/api/niubi",
+    match: [
+      {
+        re: "来点(S*)笑话",
+      },
+      {
+        includes: "nb",
+      },
+    ],
+  };
 
   mirai.on("message", (msg) => {
     let name = "我";
     let sentence = "";
 
-    niubi.match.forEach((obj) => {
+    niubi.match.forEach(async (obj) => {
       const str = match(msg.plain.toLowerCase(), obj);
       if (!str) {
         return;
@@ -33,11 +44,11 @@ export default function (ctx) {
         }
       });
 
-      if (isUrl(url)) {
-        const { data } = axios.get(url);
-        sentence = data[0];
+      if (isUrl(niubi.url)) {
+        const { data } = await axios.get(niubi.url);
+        sentence = renderString(data[0], name, "name");
       } else {
-        const niubiJson = require(url);
+        const niubiJson = require(niubi.url);
         sentence = getRandomSentence(sentences, name);
       }
       msg.reply(sentence);

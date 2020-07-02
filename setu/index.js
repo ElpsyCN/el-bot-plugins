@@ -1,7 +1,8 @@
 import Message from "mirai-ts/dist/message";
-import { includes } from "mirai-ts/dist/utils/message";
+import { match } from "mirai-ts/dist/utils/message";
 import axios from "axios";
 import { isUrl } from "../utils";
+import niubi from "../niubi";
 
 function getRandomImage(image) {
   const index = Math.floor(Math.random() * image.length);
@@ -13,25 +14,37 @@ export default function (ctx) {
   const config = ctx.el.config;
   const setu = config.setu || {
     url: "https://el-bot-api.vercel.app/api/setu",
+    match: [
+      {
+        is: "不够色",
+      },
+      {
+        includes: ["来", "色图"],
+      },
+    ],
+    reply: "让我找找",
   };
 
   let image = {};
-
   if (setu.url) {
-    mirai.on("message", async (msg) => {
-      if (includes(msg.plain, ["来", "色图"]) || msg.plain === "不够色") {
-        msg.reply("让我找找");
+    mirai.on("message", (msg) => {
+      setu.match.forEach(async (obj) => {
+        if (match(msg.plain.toLowerCase(), obj)) {
+          if (setu.reply) {
+            msg.reply(setu.reply);
+          }
 
-        if (isUrl(setu.url)) {
-          const { data } = await axios.get(setu.url);
-          image = data;
-        } else {
-          const setuJson = require(setu.url);
-          image = getRandomImage(setuJson.image);
+          if (isUrl(setu.url)) {
+            const { data } = await axios.get(setu.url);
+            image = data;
+          } else {
+            const setuJson = require(setu.url);
+            image = getRandomImage(setuJson.image);
+          }
+
+          msg.reply([Message.Image("", image.url)]);
         }
-
-        msg.reply([Message.Image("", image.url)]);
-      }
+      });
     });
   }
 }
