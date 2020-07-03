@@ -1,0 +1,8 @@
+setu:
+  url: https://el-bot-api.vercel.app/api/setu
+  match:
+    - is: 不够色
+    - includes:
+        - 来点
+        - 色图
+  reply: 让我找找

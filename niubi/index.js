@@ -1,5 +1,4 @@
-import sentences from "./sentences.json";
-import { re, match } from "mirai-ts/dist/utils/message";
+import { match } from "mirai-ts/dist/utils/message";
 import { isUrl } from "../utils";
 import axios from "axios";
 import { renderString } from "@utils/message";
