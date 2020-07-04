@@ -2,31 +2,48 @@ import { match } from "mirai-ts/dist/utils/message";
 import { isUrl } from "../utils";
 import axios from "axios";
 import { renderString } from "@utils/message";
+import { el } from "../../../index";
+import { merge } from "@utils/config";
 
-function getRandomSentence(sentences, name) {
-  const index = Math.floor(Math.random() * sentences.length);
-  return renderString(sentences[index], name, "name");
+let niubiJson = null;
+let niubi = {
+  url: "https://el-bot-api.vercel.app/api/niubi",
+  match: [
+    {
+      re: "来点(S*)笑话",
+    },
+    {
+      includes: "nb",
+    },
+  ],
+};
+
+async function getRandomSentence(name) {
+  let sentence = "";
+  if (niubiJson) {
+    const index = Math.floor(Math.random() * niubiJson.length);
+    sentence = renderString(niubiJson[index], name, "name");
+  } else {
+    const { data } = await axios.get(niubi.url);
+    sentence = renderString(data[0], name, "name");
+  }
+  return sentence;
 }
 
 export default function (ctx) {
   const config = ctx.el.config;
   const mirai = ctx.mirai;
 
-  const niubi = config.niubi || {
-    url: "https://el-bot-api.vercel.app/api/niubi",
-    match: [
-      {
-        re: "来点(S*)笑话",
-      },
-      {
-        includes: "nb",
-      },
-    ],
-  };
+  // 覆盖默认配置
+  merge(niubi, config.niubi);
 
   mirai.on("message", (msg) => {
     let name = "我";
     let sentence = "";
+
+    if (!isUrl(niubi.url)) {
+      niubiJson = require(niubi.url);
+    }
 
     niubi.match.forEach(async (obj) => {
       const str = match(msg.plain.toLowerCase(), obj);
@@ -43,20 +60,14 @@ export default function (ctx) {
         }
       });
 
-      if (isUrl(niubi.url)) {
-        const { data } = await axios.get(niubi.url);
-        sentence = renderString(data[0], name, "name");
-      } else {
-        const niubiJson = require(niubi.url);
-        sentence = getRandomSentence(sentences, name);
-      }
+      const sentence = await getRandomSentence(name);
       msg.reply(sentence);
     });
   });
 
   // 进群时
-  mirai.on("MemberJoinEvent", (msg) => {
-    const sentence = getRandomSentence(sentences, msg.member.memberName);
+  mirai.on("MemberJoinEvent", async (msg) => {
+    const sentence = await getRandomSentence(name);
     mirai.api.sendGroupMessage(sentence, msg.member.group.id);
   });
 }

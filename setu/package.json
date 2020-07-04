@@ -1,6 +1,6 @@
 {
   "name": "setu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "发点色图",
   "main": "index.js",
   "scripts": {
