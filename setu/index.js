@@ -13,6 +13,7 @@ export default function (ctx) {
   const config = ctx.el.config;
   const setu = config.setu || {
     url: "https://el-bot-api.vercel.app/api/setu",
+    proxy: "https://images.weserv.nl/?url=",
     match: [
       {
         is: "不够色",
@@ -37,12 +38,13 @@ export default function (ctx) {
             const { data } = await axios.get(setu.url);
             image = data;
             if (!image.url) image = data.data[0];
-            console.log(image);
           } else {
             const setuJson = require(setu.url);
             image = getRandomImage(setuJson.image);
           }
 
+          // 图片链接设置代理
+          if (setu.proxy) image.url = setu.proxy + image.url;
           msg.reply([Message.Image("", image.url)]);
         }
       });
