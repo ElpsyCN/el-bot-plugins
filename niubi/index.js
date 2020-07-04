@@ -67,7 +67,7 @@ export default function (ctx) {
 
   // 进群时
   mirai.on("MemberJoinEvent", async (msg) => {
-    const sentence = await getRandomSentence(name);
+    const sentence = await getRandomSentence(msg.member.memberName);
     mirai.api.sendGroupMessage(sentence, msg.member.group.id);
   });
 }
