@@ -17,6 +17,8 @@ EBJ: [假装我是一张真正的色图]
 
 > 不需要自定义时，不需要配置，默认使用 `https://el-bot-api.vercel.app/api/setu`。
 
+另一个 [色图 API](https://api.lolicon.app/#/setu)：https://api.lolicon.app/setu/
+
 ```yaml
 setu:
   url: https://el-bot-api.vercel.app/api/setu

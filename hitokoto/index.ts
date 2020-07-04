@@ -15,7 +15,7 @@ async function getSentence(params: object) {
   return words;
 }
 
-export default function (ctx: ElBot) {
+export default function hitokoto(ctx: ElBot) {
   const config = ctx.el.config;
   const mirai = ctx.mirai;
   const hitokoto = config.hitokoto;
