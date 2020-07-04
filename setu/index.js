@@ -36,6 +36,8 @@ export default function (ctx) {
           if (isUrl(setu.url)) {
             const { data } = await axios.get(setu.url);
             image = data;
+            if (!image.url) image = data.data[0];
+            console.log(image);
           } else {
             const setuJson = require(setu.url);
             image = getRandomImage(setuJson.image);
