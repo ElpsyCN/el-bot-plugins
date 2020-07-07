@@ -1,7 +1,7 @@
 {
-  "name": "el-bot-js-plugins",
+  "name": "el-bot-plugins",
   "version": "1.0.0",
-  "description": "此处提供一些 [el-bot-js](https://github.com/ElpsyCN/el-bot-js/) 可用的社区插件。你可以为其提交 PR，提供给更多人使用，并在对应插件的 README 中留下你的大名。",
+  "description": "此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的社区插件。你可以为其提交 PR，提供给更多人使用，并在对应插件的 README 中留下你的大名。",
   "main": "index.js",
   "scripts": {
     "dev": "echo 你在教我做事？",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ElpsyCN/el-bot-js-plugins.git"
+    "url": "git+https://github.com/ElpsyCN/el-bot-plugins.git"
   },
   "author": {
     "name": "YunYouJun",
@@ -18,7 +18,7 @@
   },
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/ElpsyCN/el-bot-js-plugins/issues"
+    "url": "https://github.com/ElpsyCN/el-bot-plugins/issues"
   },
-  "homepage": "https://github.com/ElpsyCN/el-bot-js-plugins#readme"
+  "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme"
 }
