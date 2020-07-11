@@ -10,7 +10,7 @@ let niubi = {
   url: "https://el-bot-api.vercel.app/api/niubi",
   match: [
     {
-      re: "来点(S*)笑话",
+      re: "来点(\\S*)笑话",
     },
     {
       includes: "nb",
