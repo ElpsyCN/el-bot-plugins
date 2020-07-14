@@ -1,4 +1,4 @@
-# 课程表 class_schedule
+# 课程表 class-schedule
 
 + 作者：[@ADD-SP](https://github.com/ADD-SP)
 + 简介：根据配置内容定时发送上课信息。
@@ -7,26 +7,37 @@
 
 ```yml
 class_schedule:
-  advance: '10m'
-  courses:
-    - time: 'TUE 8:00'
-      name: '语文'
-      place: '第一教室'
-      teacher: '张三'
-  target:
-    friend:
-      - QQ 号
-      - 另一个 QQ 号
-    group:
-      - 群号
-      - 另一个群号
+  - advance: '10m'
+    courses:
+      - time: 'TUE 8:00'
+        name: '语文'
+        place: '第一教室'
+        teacher: '张三'
+    target:
+      friend:
+        - 小明的 QQ
+      group:
+        - 小明的班级群群号
+  - advance: '1h'
+    courses:
+      - time: 'TUE 8:00'
+        name: '数学'
+        place: '第一教室'
+        teacher: '李四'
+    target:
+      friend:
+        - 小红的 QQ
+      group:
+        - 小红的班级群
 ```
 
-这段配置表示：周二八点（24 小时制），语文课在第一教室上课，授课老师为张三，提前 10 分钟发送消息提醒。target 规定了消息的接收者。
+这段配置表示：
++ 周二八点（24 小时制），语文课在第一教室上课，授课老师为张三，提前 10 分钟发送消息提醒，提醒消息发送给小明及其班级群。
++ 周二八点（24 小时制），数学课课在第一教室上课，授课老师为李四，提前 1 小时发送消息提醒，提醒消息发送给小红及其班级群。
 
 # 语法
 
-## class_schedule.advance
+## class_schedule[].advance
 
 + 类型：String
 + 可否省略：不可省略
@@ -36,7 +47,7 @@ class_schedule:
 + 功能：指定在提前于开课多久发送消息提醒
 + 示例：`advance: 10m`表示提前十分钟发送消息提醒。
 
-## class_schedule.courses.time
+## class_schedule[].courses.time
 
 + 类型：String
 + 可否省略：不可省略
@@ -44,34 +55,34 @@ class_schedule:
 + 功能：声明开课时间（24 小时制）
 + 示例：`time: MON 8:00`表示周一上午八点开课
 
-## class_schedule.courses.name
+## class_schedule[].courses.name
 
 + 类型：String
 + 可否省略：不可省略
 + 功能：课程名
 
-## class_schedule.courses.place
+## class_schedule[].courses.place
 
 + 类型：String
 + 可否省略：允许省略
 + 功能：上课地点
 + 默认：未提供该信息
 
-## class_schedule.courses.teacher
+## class_schedule[].courses.teacher
 
 + 类型：String
 + 可否省略：允许省略
 + 功能：授课教师
 + 默认：未提供该信息
 
-## class_schedule.courses.other
+## class_schedule[].courses.other
 
 + 类型：String
 + 可否省略：允许省略
 + 功能：其它相关信息
 + 默认：无
 
-## class_schedule.courses.advance
+## class_schedule[].courses.advance
 
 + 类型：String
 + 可否省略：允许省略
