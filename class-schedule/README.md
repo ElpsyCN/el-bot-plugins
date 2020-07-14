@@ -25,7 +25,6 @@ class_schedule:
         place: '第一教室'
         teacher: '李四'
     target:
-    target:
       friend:
         - 小红的 QQ
       group:
