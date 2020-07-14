@@ -26,26 +26,23 @@ export default async function (ctx) {
     if (!ctx.el.config.class_schedule) {
         return;
     }
-    if (!ctx.el.config.class_schedule.advance) {
+
+    for (let courseGroup of ctx.el.config.class_schedule) {
+        procCourses(courseGroup)
+    }
+}
+
+function procCourses(courseGroup) {
+    if (!courseGroup.advance) {
         throw new ConfigSyntaxError("The advance is not provided in config.");
     }
-
-    let target = ctx.el.config.class_schedule.target;
+    let target = courseGroup.target;
     if (!target) {
         throw new ConfigSyntaxError("The target is not provided in config.");
     }
-    if (!target.friend && !target.group) {
-        throw new ConfigSyntaxError("In config, friend and group must provide at least one.");
-    }
-    if (target.friend && target.friend.length == 0) {
-        throw new ConfigSyntaxError("At least one QQ must be assigned to the friend in the config.");
-    }
-    if (target.friend && target.group.length == 0) {
-        throw new ConfigSyntaxError("At least one group ID must be assogned to the group in the config.");
-    }
 
-    for (let course of ctx.el.config.class_schedule.courses) {
-        let time = parseTime(course, ctx.el.config.class_schedule.advance);
+    for (let course of courseGroup.courses) {
+        let time = parseTime(course, courseGroup.advance);
         let place = course.place ? course.place.toString() : "未提供该信息";
         let teacher = course.teacher ? course.teacher.toString() : "未提供该信息";
         let other = course.other ? course.other.toString() : "无";
