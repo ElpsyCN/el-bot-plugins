@@ -27,7 +27,7 @@ export default function hitokoto(ctx: ElBot) {
     });
   }
 
-  mirai.on("message", async (msg: MessageType.SingleMessage) => {
+  mirai.on("message", async (msg: MessageType.ChatMessage) => {
     hitokoto.match.forEach(async (obj: Config.Match) => {
       if (match(msg.plain, obj)) {
         const words = await getSentence(hitokoto.params);
