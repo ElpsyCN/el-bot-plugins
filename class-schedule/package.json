@@ -6,7 +6,5 @@
   "author": "ADD-SP",
   "license": "AGPL-3.0",
   "dependencies": {
-    "moment": "^2.27.0",
-    "node-schedule": "^1.3.2"
   }
 }
