@@ -12,12 +12,15 @@
 npm init
 ```
 
+各插件主入口文件为 `index.js`，并须附带 README.md 作为相关说明文档。
+
+因为 mirai 属于 [AGPL-3.0](https://github.com/mamoe/mirai/blob/master/LICENSE) 协议，您提交在本仓库的插件将须默认使用 AGPL-3.0 协议。
+
 ### 命名规则
 
 - 纯小写字母
 - 多个单词时以 `-` 分割
-
-各插件主入口文件为 `index.js`，并须附带 README.md 作为相关说明文档。
+- 若插件需要自定义配置，请与插件名保持一致，含有连字符的插件名对应的 `yaml` 配置属性使用 `_` 替代。
 
 ## 在 el-bot 中使用
 
