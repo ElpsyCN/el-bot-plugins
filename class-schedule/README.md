@@ -1,4 +1,4 @@
-# 课程表 class_schedule
+# 课程表 class-schedule
 
 + 作者：[@ADD-SP](https://github.com/ADD-SP)
 + 简介：根据配置内容定时发送上课信息。

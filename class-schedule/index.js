@@ -1,29 +1,47 @@
 import schedule from "node-schedule";
-import moment from "moment";
+import dayjs from "dayjs";
 import util from "util";
+import isoWeek from "dayjs/plugin/isoWeek";
+import { sendMessageByConfig } from "@utils/message";
 
 const g_formatStr =
     "课程名：%s\n上课时间：%s:%s\n地点：%s\n授课老师：%s\n其它信息：%s";
 const g_timeRegexp = new RegExp("^(MON|TUE|WED|THU|FRI|SAT|SUB)\\s([0-9]{1,2}):([0-9]{1,2})$", "i");
 
 const g_weekMap = new Map();
+g_weekMap["SUN"] = 7; g_weekMap[7] = "SUN";
 g_weekMap["MON"] = 1; g_weekMap[1] = "MON";
 g_weekMap["TUE"] = 2; g_weekMap[2] = "TUE";
 g_weekMap["WED"] = 3; g_weekMap[3] = "WED";
 g_weekMap["THU"] = 4; g_weekMap[4] = "THU";
 g_weekMap["FRI"] = 5; g_weekMap[5] = "FRI";
 g_weekMap["SAT"] = 6; g_weekMap[6] = "SAT";
-g_weekMap["SUN"] = 7; g_weekMap[7] = "SUN";
 
 
 export default async function (ctx) {
     const mirai = ctx.mirai;
+    dayjs.extend(isoWeek);
+    dayjs.locale('zh-cn');
 
     if (!ctx.el.config.class_schedule) {
         return;
     }
     if (!ctx.el.config.class_schedule.advance) {
         throw new ConfigSyntaxError("The advance is not provided in config.");
+    }
+
+    let target = ctx.el.config.class_schedule.target;
+    if (!target) {
+        throw new ConfigSyntaxError("The target is not provided in config.");
+    }
+    if (!target.friend && !target.group) {
+        throw new ConfigSyntaxError("In config, friend and group must provide at least one.");
+    }
+    if (target.friend && target.friend.length == 0) {
+        throw new ConfigSyntaxError("At least one QQ must be assigned to the friend in the config.");
+    }
+    if (target.friend && target.group.length == 0) {
+        throw new ConfigSyntaxError("At least one group ID must be assogned to the group in the config.");
     }
 
     for (let course of ctx.el.config.class_schedule.courses) {
@@ -44,17 +62,7 @@ export default async function (ctx) {
         );
 
         schedule.scheduleJob(time.cron, function () {
-            let target = ctx.el.config.class_schedule.target;
-            if (target.friend) {
-                for (let userID of target.friend) {
-                    mirai.api.sendFriendMessage(msg, parseInt(userID.toString()));
-                }
-            }
-            if (target.group) {
-                for (let groupID of target.group) {
-                    mirai.api.sendGroupMessage(msg, parseInt(groupID.toString()));
-                }
-            }
+            sendMessageByConfig(msg, target);
         });
     }
 }
@@ -103,18 +111,17 @@ function parseTime(course, advance) {
 
 
     // 计算「提醒时间」
-    let temp = moment().set({
-        hour: parseInt(time.hour),
-        minute: parseInt(time.minute),
-    });
+    let temp = dayjs().set("hour", parseInt(time.hour))
+        .set("minute", parseInt(time.minute))
+        .set("day", g_weekMap[time.week]);
     advance = course.advance ? course.advance : advance.toString();
-    temp.isoWeekday(g_weekMap[time.week]);
+    temp.day(g_weekMap[time.week]);
     // 使用「课程开始时间」减去「提前时长」得到「提醒时间」
-    temp.subtract(
+    temp = temp.subtract(
         parseInt(advance.substr(0, advance.length - 1)),
         advance[advance.length - 1]
     );
-    time.advance.week = g_weekMap[temp.isoWeekday()];
+    time.advance.week = g_weekMap[temp.day()];
     time.advance.hour = temp.get("h");
     time.advance.minute = temp.get("m");
 
@@ -125,7 +132,6 @@ function parseTime(course, advance) {
         time.advance.hour,
         time.advance.week
     );
-
 
     return time;
 }
