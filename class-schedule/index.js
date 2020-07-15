@@ -42,7 +42,8 @@ function procCourses(courseGroup) {
     }
 
     for (let course of courseGroup.courses) {
-        let time = parseTime(course, courseGroup.advance);
+        // 在不写 advance 的情况下默认提前十分钟提醒
+        let time = parseTime(course, courseGroup.advance ? courseGroup.advance : "10m");
         let place = course.place ? course.place.toString() : "未提供该信息";
         let teacher = course.teacher ? course.teacher.toString() : "未提供该信息";
         let other = course.other ? course.other.toString() : "无";
