@@ -1,6 +1,6 @@
 {
   "name": "@el-bot/plugin-hitokoto",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "发一句话",
   "main": "dist/index.js",
   "scripts": {

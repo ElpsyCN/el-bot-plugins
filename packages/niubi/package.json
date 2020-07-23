@@ -1,6 +1,6 @@
 {
   "name": "@el-bot/plugin-niubi",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "夸人牛逼",
   "main": "dist/index.js",
   "scripts": {
