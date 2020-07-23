@@ -1,8 +1,8 @@
 {
-  "name": "hitokoto",
+  "name": "@el-bot/plugin-hitokoto",
   "version": "0.0.1",
   "description": "发一句话",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo 'el say'"
   },

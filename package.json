@@ -1,11 +1,20 @@
 {
   "name": "el-bot-plugins",
   "version": "1.0.0",
-  "description": "此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的社区插件。你可以为其提交 PR，提供给更多人使用，并在对应插件的 README 中留下你的大名。",
+  "private": true,
+  "description": "此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的社区插件。",
   "main": "index.js",
   "scripts": {
+    "lerna": "lerna",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna exec -- rm -rf dist",
+    "build": "yarn clean && lerna exec -- babel . -d dist --config-file ../../babel.config.js",
+    "lint": "eslint --ext .js packages",
     "dev": "echo 你在教我做事？",
-    "test": "echo 你在教我做事？"
+    "test": "echo 你在教我做事？",
+    "prepublish": "lerna run build",
+    "publish": "lerna publish",
+    "release": "lerna publish --conventional-commits"
   },
   "repository": {
     "type": "git",
@@ -20,5 +29,13 @@
   "bugs": {
     "url": "https://github.com/ElpsyCN/el-bot-plugins/issues"
   },
-  "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme"
+  "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4"
+  }
 }

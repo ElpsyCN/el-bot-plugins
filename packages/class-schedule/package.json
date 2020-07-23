@@ -1,0 +1,8 @@
+{
+  "name": "@el-bot/plugin-class-schedule",
+  "version": "0.0.1",
+  "description": "课程表",
+  "main": "dist/index.js",
+  "author": "ADD-SP",
+  "license": "AGPL-3.0"
+}

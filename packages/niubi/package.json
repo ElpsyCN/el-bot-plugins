@@ -1,8 +1,8 @@
 {
-  "name": "niubi",
+  "name": "@el-bot/plugin-niubi",
   "version": "0.0.2",
   "description": "夸人牛逼",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo '@某人 nb'"
   },

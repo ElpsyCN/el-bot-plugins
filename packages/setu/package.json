@@ -1,8 +1,8 @@
 {
-  "name": "setu",
+  "name": "@el-bot/plugin-setu",
   "version": "0.0.2",
   "description": "发点色图",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo '来点色图'"
   },

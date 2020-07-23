@@ -1,12 +1,12 @@
 import axios from "axios";
-import ElBot from "src/bot";
+import Bot from "src/bot";
 import { match } from "mirai-ts/dist/utils/message";
 import { MessageType, Config } from "mirai-ts";
 
 import schedule from "node-schedule";
 import { sendMessageByConfig } from "@utils/message";
 
-async function getSentence(params: object) {
+async function getSentence(params) {
   const { data } = await axios.get("https://v1.hitokoto.cn", {
     params: params,
   });
@@ -15,7 +15,7 @@ async function getSentence(params: object) {
   return words;
 }
 
-export default function hitokoto(ctx: ElBot) {
+export default function hitokoto(ctx) {
   const config = ctx.el.config;
   const mirai = ctx.mirai;
   const hitokoto = config.hitokoto;
@@ -27,8 +27,8 @@ export default function hitokoto(ctx: ElBot) {
     });
   }
 
-  mirai.on("message", async (msg: MessageType.ChatMessage) => {
-    hitokoto.match.forEach(async (obj: Config.Match) => {
+  mirai.on("message", async (msg) => {
+    hitokoto.match.forEach(async (obj) => {
       if (match(msg.plain, obj)) {
         const words = await getSentence(hitokoto.params);
         msg.reply(words);
