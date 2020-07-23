@@ -31,7 +31,10 @@
   "description": "夸人牛逼",
   "main": "dist/index.js",
   "author": "YunYouJun",
-  "license": "AGPL-3.0"
+  "license": "AGPL-3.0",
+  "publishConfig": {
+    "access": "public"
+  }
 }
 ```
 

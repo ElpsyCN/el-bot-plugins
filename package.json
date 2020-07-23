@@ -13,8 +13,8 @@
     "dev": "echo 你在教我做事？",
     "test": "echo 你在教我做事？",
     "prepublish": "lerna run build",
-    "publish": "lerna publish --access public",
-    "publish:force": "lerna publish --access public from-git --force-publish --no-git-tag-version --no-push --yes",
+    "publish": "lerna publish -- --access public",
+    "publish:force": "lerna publish from-git --force-publish --no-git-tag-version --no-push --yes -- --access public",
     "release": "lerna publish --conventional-commits"
   },
   "repository": {
