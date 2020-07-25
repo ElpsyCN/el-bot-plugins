@@ -1,6 +1,6 @@
 {
   "name": "@el-bot/plugin-setu",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "发点色图",
   "main": "dist/index.js",
   "scripts": {
