@@ -2,13 +2,19 @@ import Message from "mirai-ts/dist/message";
 import { match } from "mirai-ts/dist/utils/message";
 import axios from "axios";
 import { isUrl } from "el-bot/dist/utils/helper";
+import Bot from "el-bot";
+import { Config } from "mirai-ts";
 
-function getRandomImage(image) {
+function getRandomImage(image: any[]) {
   const index = Math.floor(Math.random() * image.length);
   return image[index];
 }
 
-export default function (ctx) {
+interface Image {
+  url: string;
+}
+
+export default function (ctx: Bot) {
   const mirai = ctx.mirai;
   const config = ctx.el.config;
   const setu = config.setu || {
@@ -25,10 +31,10 @@ export default function (ctx) {
     reply: "让我找找",
   };
 
-  let image = {};
+  let image: Image;
   if (setu.url) {
     mirai.on("message", (msg) => {
-      setu.match.forEach(async (obj) => {
+      setu.match.forEach(async (obj: Config.Match) => {
         if (match(msg.plain.toLowerCase(), obj)) {
           if (setu.reply) {
             msg.reply(setu.reply);

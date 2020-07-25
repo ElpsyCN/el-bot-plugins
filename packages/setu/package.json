@@ -4,6 +4,7 @@
   "description": "发点色图",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc -b",
     "test": "echo '来点色图'"
   },
   "author": "YunYouJun",

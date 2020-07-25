@@ -4,6 +4,7 @@
   "description": "发一句话",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc -b",
     "test": "echo 'el say'"
   },
   "author": "YunYouJun",

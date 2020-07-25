@@ -10,16 +10,15 @@
   "scripts": {
     "lerna": "lerna",
     "bootstrap": "lerna bootstrap",
+    "build": "lerna exec -- yarn build",
     "clean": "lerna exec -- rm -rf dist",
-    "build": "yarn clean && lerna exec -- babel index.js -d dist --config-file ../../babel.config.js",
-    "lint": "eslint --ext .js packages",
     "link": "lerna exec -- yarn link",
-    "dev": "lerna exec -- babel index.js -w -d dist --config-file ../../babel.config.js",
     "test": "echo 你在教我做事？",
     "prepublish": "lerna run build",
-    "publish": "lerna publish -- --access public",
-    "publish:force": "lerna publish from-git --force-publish --no-git-tag-version --no-push --yes -- --access public",
-    "release": "lerna publish --conventional-commits"
+    "publish": "lerna publish",
+    "publish:force": "lerna publish from-git --force-publish --no-git-tag-version --no-push --yes",
+    "release": "lerna publish --conventional-commits",
+    "watch": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -36,12 +35,6 @@
   },
   "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme",
   "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.10.5",
     "lerna": "^3.22.1"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4"
   }
 }

@@ -1,8 +1,8 @@
-import schedule from "node-schedule";
-import dayjs from "dayjs";
-import util from "util";
-import isoWeek from "dayjs/plugin/isoWeek";
-import { sendMessageByConfig } from "@utils/message";
+const schedule = require("node-schedule");
+const dayjs = require("dayjs");
+const util = require("util");
+const isoWeek = require("dayjs/plugin/isoWeek");
+const { sendMessageByConfig } = require("@utils/message");
 
 const g_formatStr =
     "课程名：%s\n上课时间：%s:%s\n地点：%s\n授课老师：%s\n其它信息：%s";
@@ -19,7 +19,7 @@ g_weekMap["FRI"] = 5; g_weekMap[5] = "FRI";
 g_weekMap["SAT"] = 6; g_weekMap[6] = "SAT";
 
 
-export default async function (ctx) {
+module.exports = async function (ctx) {
     const mirai = ctx.mirai;
     dayjs.extend(isoWeek);
     dayjs.locale('zh-cn');

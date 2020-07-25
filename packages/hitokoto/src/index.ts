@@ -2,9 +2,10 @@ import axios from "axios";
 import { match } from "mirai-ts/dist/utils/message";
 import { MessageType, Config } from "mirai-ts";
 import schedule from "node-schedule";
-import { merge } from 'el-bot/dist/utils/config'
+import { merge } from 'el-bot/dist/utils/config';
+import Bot from "el-bot";
 
-async function getSentence(params) {
+async function getSentence(params: object) {
   const { data } = await axios.get("https://v1.hitokoto.cn", {
     params: params,
   });
@@ -13,30 +14,42 @@ async function getSentence(params) {
   return words;
 }
 
+/**
+ * 配置
+ */
+interface hitokotoConfig {
+  cron?: string;
+  target?: Config.Target;
+  params?: any;
+  match?: Config.Match[];
+}
+
 // 默认配置
-let hitokoto = {
+let hitokoto: hitokotoConfig = {
   cron: "0 0 * * *",
   match: [
     { is: "el say" },
     { includes: "说点骚话" }
-  ]
-}
+  ],
+};
 
 /**
  * @param config hitokoto 配置
  */
-export default function(ctx, config) {
+export default function (ctx: Bot, config: hitokotoConfig) {
   const mirai = ctx.mirai;
   merge(hitokoto, config);
 
   if (hitokoto && hitokoto.cron && hitokoto.target) {
     schedule.scheduleJob(hitokoto.cron, async () => {
+      if (!hitokoto.target) return;
       const words = await getSentence(hitokoto.params);
       ctx.sender.sendMessageByConfig(words, hitokoto.target);
     });
   }
 
   mirai.on("message", async (msg) => {
+    if (!hitokoto.match) return;
     hitokoto.match.forEach(async (obj) => {
       if (match(msg.plain, obj)) {
         const words = await getSentence(hitokoto.params);

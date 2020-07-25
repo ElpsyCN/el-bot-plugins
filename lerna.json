@@ -5,7 +5,9 @@
   "version": "independent",
   "npmClient": "yarn",
   "command": {
-    "message": "🔖 lerna publish",
-    "registry": "https://registry.npmjs.org"
+    "publish": {
+      "message": "🔖 lerna publish",
+      "registry": "https://registry.npmjs.org"
+    }
   }
 }

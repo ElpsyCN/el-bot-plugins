@@ -1,8 +1,8 @@
-import { match } from 'mirai-ts/dist/utils/message'
-import axios from 'axios'
-import { isUrl } from 'el-bot/dist/utils/helper'
-import { renderString } from 'el-bot/dist/utils/message'
-import { merge } from 'el-bot/dist/utils/config'
+const { match } = require'mirai-ts/dist/utils/message')
+const axios = require('axios')
+const { isUrl } = require('el-bot/dist/utils/helper')
+const { renderString } = require('el-bot/dist/utils/message')
+const { merge } = require('el-bot/dist/utils/config')
 
 let niubiJson = null
 let niubi = {
@@ -29,7 +29,7 @@ async function getRandomSentence(name) {
   return sentence
 }
 
-export default function (ctx) {
+module.exports = function (ctx) {
   const config = ctx.el.config
   const mirai = ctx.mirai
 

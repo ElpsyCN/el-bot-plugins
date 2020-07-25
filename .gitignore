@@ -5,3 +5,6 @@ yarn.lock
 
 *.log
 .vercel
+
+# typescript
+*.tsbuildinfo
