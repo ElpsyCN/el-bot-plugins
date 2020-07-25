@@ -1,7 +1,7 @@
 import Message from "mirai-ts/dist/message";
 import { match } from "mirai-ts/dist/utils/message";
 import axios from "axios";
-import { isUrl } from "../utils";
+import { isUrl } from "el-bot/dist/utils/helper";
 
 function getRandomImage(image) {
   const index = Math.floor(Math.random() * image.length);

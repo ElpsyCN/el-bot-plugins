@@ -1,12 +1,12 @@
-# 社区插件
+# 官方插件
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的社区插件。你可以为其提交 PR，提供给更多人使用，并在对应插件的 README 中留下你的大名。
+此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的官方插件。你可以为其提交 PR，提供给更多人使用，并在对应插件的 README 中留下你的大名。
 
 ## 说明
 
-社区插件仓库中每个目录以插件名命名，不可重复。
+官方插件仓库中每个目录以插件名命名，不可重复。
 
 目录结构：
 
@@ -39,6 +39,8 @@
 ```
 
 各插件主入口文件为 `dist/index.js`，并须附带 README.md 作为相关说明文档。
+
+并填写上名称、版本、描述、作者、协议等，这些将会在加载插件时，作为插件的信息记录。
 
 因为 mirai 属于 [AGPL-3.0](https://github.com/mamoe/mirai/blob/master/LICENSE) 协议，您提交在本仓库的插件将须默认使用 AGPL-3.0 协议。
 

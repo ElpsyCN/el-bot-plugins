@@ -2,15 +2,19 @@
   "name": "el-bot-plugins",
   "version": "1.0.0",
   "private": true,
+  "workdpaces": [
+    "packages/*"
+  ],
   "description": "此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的社区插件。",
   "main": "index.js",
   "scripts": {
     "lerna": "lerna",
     "bootstrap": "lerna bootstrap",
     "clean": "lerna exec -- rm -rf dist",
-    "build": "yarn clean && lerna exec -- babel . -d dist --config-file ../../babel.config.js",
+    "build": "yarn clean && lerna exec -- babel index.js -d dist --config-file ../../babel.config.js",
     "lint": "eslint --ext .js packages",
-    "dev": "echo 你在教我做事？",
+    "link": "lerna exec -- yarn link",
+    "dev": "lerna exec -- babel index.js -w -d dist --config-file ../../babel.config.js",
     "test": "echo 你在教我做事？",
     "prepublish": "lerna run build",
     "publish": "lerna publish -- --access public",
@@ -32,6 +36,7 @@
   },
   "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme",
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "lerna": "^3.22.1"
   },
   "dependencies": {

@@ -1,8 +1,8 @@
 import { match } from 'mirai-ts/dist/utils/message'
 import axios from 'axios'
-import { isUrl } from '@utils/helper'
-import { renderString } from '@utils/message'
-import { merge } from '@utils/config'
+import { isUrl } from 'el-bot/dist/utils/helper'
+import { renderString } from 'el-bot/dist/utils/message'
+import { merge } from 'el-bot/dist/utils/config'
 
 let niubiJson = null
 let niubi = {

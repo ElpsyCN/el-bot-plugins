@@ -1,10 +1,8 @@
 import axios from "axios";
-import Bot from "src/bot";
 import { match } from "mirai-ts/dist/utils/message";
 import { MessageType, Config } from "mirai-ts";
-
 import schedule from "node-schedule";
-import { sendMessageByConfig } from "@utils/message";
+import { merge } from 'el-bot/dist/utils/config'
 
 async function getSentence(params) {
   const { data } = await axios.get("https://v1.hitokoto.cn", {
@@ -15,15 +13,26 @@ async function getSentence(params) {
   return words;
 }
 
-export default function hitokoto(ctx) {
-  const config = ctx.el.config;
-  const mirai = ctx.mirai;
-  const hitokoto = config.hitokoto;
+// 默认配置
+let hitokoto = {
+  cron: "0 0 * * *",
+  match: [
+    { is: "el say" },
+    { includes: "说点骚话" }
+  ]
+}
 
-  if (hitokoto.cron && hitokoto.target) {
+/**
+ * @param config hitokoto 配置
+ */
+export default function(ctx, config) {
+  const mirai = ctx.mirai;
+  merge(hitokoto, config);
+
+  if (hitokoto && hitokoto.cron && hitokoto.target) {
     schedule.scheduleJob(hitokoto.cron, async () => {
       const words = await getSentence(hitokoto.params);
-      sendMessageByConfig(words, hitokoto.target);
+      ctx.sender.sendMessageByConfig(words, hitokoto.target);
     });
   }
 
