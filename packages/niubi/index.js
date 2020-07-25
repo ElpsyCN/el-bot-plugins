@@ -1,4 +1,4 @@
-const { match } = require'mirai-ts/dist/utils/message')
+const { match } = require('mirai-ts/dist/utils/message')
 const axios = require('axios')
 const { isUrl } = require('el-bot/dist/utils/helper')
 const { renderString } = require('el-bot/dist/utils/message')
