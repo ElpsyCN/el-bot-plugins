@@ -1,9 +1,7 @@
-import Message from "mirai-ts/dist/message";
-import { match } from "mirai-ts/dist/utils/message";
+import { Message, Config, check } from "mirai-ts";
 import axios from "axios";
-import { isUrl } from "el-bot/dist/utils/helper";
 import Bot from "el-bot";
-import { Config } from "mirai-ts";
+import { utils } from "el-bot";
 
 function getRandomImage(image: any[]) {
   const index = Math.floor(Math.random() * image.length);
@@ -35,12 +33,12 @@ export default function (ctx: Bot) {
   if (setu.url) {
     mirai.on("message", (msg) => {
       setu.match.forEach(async (obj: Config.Match) => {
-        if (match(msg.plain.toLowerCase(), obj)) {
+        if (check.match(msg.plain.toLowerCase(), obj)) {
           if (setu.reply) {
             msg.reply(setu.reply);
           }
 
-          if (isUrl(setu.url)) {
+          if (utils.isUrl(setu.url)) {
             const { data } = await axios.get(setu.url);
             image = data;
             if (!image.url) image = data.data[0];

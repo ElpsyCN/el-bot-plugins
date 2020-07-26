@@ -1,9 +1,8 @@
 import axios from "axios";
-import { match } from "mirai-ts/dist/utils/message";
-import { MessageType, Config } from "mirai-ts";
+import { check, Config } from "mirai-ts";
 import schedule from "node-schedule";
-import { merge } from 'el-bot/dist/utils/config';
 import Bot from "el-bot";
+import { utils } from "el-bot";
 
 async function getSentence(params: object) {
   const { data } = await axios.get("https://v1.hitokoto.cn", {
@@ -38,7 +37,7 @@ let hitokoto: hitokotoConfig = {
  */
 export default function (ctx: Bot, config: hitokotoConfig) {
   const mirai = ctx.mirai;
-  merge(hitokoto, config);
+  utils.config.merge(hitokoto, config);
 
   if (hitokoto && hitokoto.cron && hitokoto.target) {
     schedule.scheduleJob(hitokoto.cron, async () => {
@@ -51,7 +50,7 @@ export default function (ctx: Bot, config: hitokotoConfig) {
   mirai.on("message", async (msg) => {
     if (!hitokoto.match) return;
     hitokoto.match.forEach(async (obj) => {
-      if (match(msg.plain, obj)) {
+      if (check.match(msg.plain, obj)) {
         const words = await getSentence(hitokoto.params);
         msg.reply(words);
       }

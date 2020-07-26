@@ -1,8 +1,6 @@
-const { match } = require('mirai-ts/dist/utils/message')
 const axios = require('axios')
-const { isUrl } = require('el-bot/dist/utils/helper')
-const { renderString } = require('el-bot/dist/utils/message')
-const { merge } = require('el-bot/dist/utils/config')
+const { check } = require('mirai-ts')
+const { utils } = require('el-bot')
 
 let niubiJson = null
 let niubi = {
@@ -21,10 +19,10 @@ async function getRandomSentence(name) {
   let sentence = ''
   if (niubiJson) {
     const index = Math.floor(Math.random() * niubiJson.length)
-    sentence = renderString(niubiJson[index], name, 'name')
+    sentence = utils.renderString(niubiJson[index], name, 'name')
   } else {
     const { data } = await axios.get(niubi.url)
-    sentence = renderString(data[0], name, 'name')
+    sentence = utils.renderString(data[0], name, 'name')
   }
   return sentence
 }
@@ -34,18 +32,18 @@ module.exports = function (ctx) {
   const mirai = ctx.mirai
 
   // 覆盖默认配置
-  merge(niubi, config.niubi)
+  utils.config.merge(niubi, config.niubi)
 
   mirai.on('message', (msg) => {
     let name = '我'
     let sentence = ''
 
-    if (!isUrl(niubi.url)) {
+    if (!utils.isUrl(niubi.url)) {
       niubiJson = require(niubi.url)
     }
 
     niubi.match.forEach(async (obj) => {
-      const str = match(msg.plain.toLowerCase(), obj)
+      const str = check.match(msg.plain.toLowerCase(), obj)
       if (!str) {
         return
       } else if (Array.isArray(str)) {
