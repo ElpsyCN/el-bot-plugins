@@ -52,7 +52,18 @@ plugins:
 
 - 纯小写字母
 - 多个单词时以 `-` 分割
-- 若插件需要自定义配置，请与插件名保持一致，含有连字符的插件名对应的 `yaml` 配置属性使用 `_` 替代。
+- 若插件含有自定义配置，请与插件名保持一致
+
+如 niubi 插件对应的配置为：
+
+```yaml
+niubi:
+  url: https://el-bot-api.vercel.app/api/niubi
+  match:
+    - re:
+        pattern: 来点(\S*)笑话
+    - includes: nb
+```
 
 ### 说明
 
