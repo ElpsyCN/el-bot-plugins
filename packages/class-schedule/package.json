@@ -1,6 +1,6 @@
 {
   "name": "@el-bot/plugin-class-schedule",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "课程表",
   "main": "index.js",
   "author": "ADD-SP",
