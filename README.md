@@ -21,12 +21,12 @@ module.exports = {
   config: {
     plugin: {
       // 官方插件
-      official: ['niubi'],
+      official: ["niubi"],
       // 使用社区插件 el-bot-plugin-xxx
       // community: ['xxx]
-    }
-  }
-}
+    },
+  },
+};
 ```
 
 > 或 yml 插入对应想要加载的插件名（自行解析载入）

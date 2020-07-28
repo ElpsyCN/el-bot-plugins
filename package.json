@@ -5,7 +5,7 @@
   "workdpaces": [
     "packages/*"
   ],
-  "description": "此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的社区插件。",
+  "description": "[el-bot](https://github.com/ElpsyCN/el-bot/) 可用的官方插件。",
   "main": "index.js",
   "scripts": {
     "lerna": "lerna",
@@ -13,12 +13,23 @@
     "build": "lerna exec -- yarn build",
     "clean": "lerna exec -- rm -rf dist",
     "link": "lerna exec -- yarn link",
-    "test": "echo 你在教我做事？",
+    "lint": "eslint --fix . && prettier --write .",
     "prepublish": "lerna run build",
     "publish": "lerna publish",
     "publish:force": "lerna publish from-git --force-publish --no-git-tag-version --no-push --yes",
     "release": "lerna publish --conventional-commits",
     "watch": "tsc --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "repository": {
     "type": "git",
@@ -35,6 +46,14 @@
   },
   "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme",
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^4.2.5",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
   }
 }

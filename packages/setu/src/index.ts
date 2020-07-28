@@ -3,7 +3,11 @@ import axios from "axios";
 import Bot from "el-bot";
 import { utils } from "el-bot";
 
-function getRandomImage(image: any[]) {
+interface SetuImage {
+  url: string;
+}
+
+function getRandomImage(image: SetuImage[]) {
   const index = Math.floor(Math.random() * image.length);
   return image[index];
 }
@@ -12,7 +16,7 @@ interface Image {
   url: string;
 }
 
-export default function (ctx: Bot) {
+export default function (ctx: Bot): void {
   const mirai = ctx.mirai;
   const config = ctx.el.config;
   const setu = config.setu || {
@@ -43,7 +47,7 @@ export default function (ctx: Bot) {
             image = data;
             if (!image.url) image = data.data[0];
           } else {
-            const setuJson = require(setu.url);
+            const setuJson = await import(setu.url);
             image = getRandomImage(setuJson.image);
           }
 

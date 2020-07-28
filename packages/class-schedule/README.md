@@ -7,23 +7,23 @@
 
 ```yml
 class-schedule:
-  - advance: '10m'
+  - advance: "10m"
     courses:
-      - time: 'TUE 8:00'
-        name: '语文'
-        place: '第一教室'
-        teacher: '张三'
+      - time: "TUE 8:00"
+        name: "语文"
+        place: "第一教室"
+        teacher: "张三"
     target:
       friend:
         - 小明的 QQ
       group:
         - 小明的班级群群号
-  - advance: '1h10m'
+  - advance: "1h10m"
     courses:
-      - time: 'TUE 8:00'
-        name: '数学'
-        place: '第一教室'
-        teacher: '李四'
+      - time: "TUE 8:00"
+        name: "数学"
+        place: "第一教室"
+        teacher: "李四"
     target:
       friend:
         - 小红的 QQ
@@ -32,6 +32,7 @@ class-schedule:
 ```
 
 这段配置表示：
+
 - 周二八点（24 小时制），语文课在第一教室上课，授课老师为张三，提前 10 分钟发送消息提醒，提醒消息发送给小明及其班级群。
 - 周二八点（24 小时制），数学课课在第一教室上课，授课老师为李四，提前 1 小时 10 分钟发送消息提醒，提醒消息发送给小红及其班级群。
 
@@ -41,7 +42,7 @@ class-schedule:
 
 - 类型：String
 - 可否省略：允许省略
-- 需要满足的正则表达式：^([0-9]-d)?([0-9]-h)?([0-9]-m)?$
+- 需要满足的正则表达式：^([0-9]-d)?([0-9]-h)?([0-9]-m)?\$
   - `d`表示天数
   - `h`表示小时
   - `m`表示分钟
@@ -58,7 +59,7 @@ class-schedule:
 
 - 类型：String
 - 可否省略：不可省略
-- 需要满足的正则表达式：^(MON|TUE|WED|THU|FRI|SAT|SUB)\s[0-9]{1,2}:[0-9]{1,2}$
+- 需要满足的正则表达式：^(MON|TUE|WED|THU|FRI|SAT|SUB)\s[0-9]{1,2}:[0-9]{1,2}\$
 - 功能：声明开课时间（24 小时制）
 - 示例：`time: MON 8:00`表示周一上午八点开课
 
