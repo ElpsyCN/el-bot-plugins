@@ -2,7 +2,7 @@ const schedule = require("node-schedule")
 const dayjs = require("dayjs")
 const util = require("util")
 const isoWeek = require("dayjs/plugin/isoWeek")
-const { sendMessageByConfig } = require("@utils/message")
+// const { sendMessageByConfig } = require("@utils/message")
 
 const g_formatStr =
     "课程名：%s\n上课时间：%s:%s\n地点：%s\n授课老师：%s\n其它信息：%s"
@@ -19,21 +19,20 @@ g_weekMap["FRI"] = 5; g_weekMap[5] = "FRI"
 g_weekMap["SAT"] = 6; g_weekMap[6] = "SAT"
 
 
-module.exports = async function (ctx) {
-    const mirai = ctx.mirai
+export default function (ctx, config) {
     dayjs.extend(isoWeek)
     dayjs.locale('zh-cn')
 
-    if (!ctx.el.config.class_schedule) {
+    if (!config) {
         return
     }
 
-    for (let courseGroup of ctx.el.config.class_schedule) {
-        procCourses(courseGroup)
+    for (let courseGroup of config) {
+        procCourses(ctx, courseGroup)
     }
 }
 
-function procCourses(courseGroup) {
+function procCourses(ctx, courseGroup) {
     if (!courseGroup.advance) {
         throw new ConfigSyntaxError("The advance is not provided in config.")
     }
@@ -61,7 +60,7 @@ function procCourses(courseGroup) {
         )
 
         schedule.scheduleJob(time.cron, function () {
-            sendMessageByConfig(msg, target)
+            ctx.mirai.api.sendGroupMessage(msg, target);
         })
     }
 }
