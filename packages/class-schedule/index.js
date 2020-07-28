@@ -2,7 +2,6 @@ const schedule = require("node-schedule")
 const dayjs = require("dayjs")
 const util = require("util")
 const isoWeek = require("dayjs/plugin/isoWeek")
-// const { sendMessageByConfig } = require("@utils/message")
 
 const g_formatStr =
     "课程名：%s\n上课时间：%s:%s\n地点：%s\n授课老师：%s\n其它信息：%s"
@@ -19,7 +18,7 @@ g_weekMap["FRI"] = 5; g_weekMap[5] = "FRI"
 g_weekMap["SAT"] = 6; g_weekMap[6] = "SAT"
 
 
-export default function (ctx, config) {
+module.exports = async function (ctx, config) {
     dayjs.extend(isoWeek)
     dayjs.locale('zh-cn')
 
@@ -130,7 +129,7 @@ function parseTimeAndAdvance(course, advance) {
         temp = temp.subtract(
             parseInt(advance.substr(0, advance.length - 1)),
             advance[advance.length - 1]
-        ); ``
+        );
     }
 
     time.advance.week = g_weekMap[temp.day()]
