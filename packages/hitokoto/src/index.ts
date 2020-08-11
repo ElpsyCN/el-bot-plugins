@@ -1,9 +1,9 @@
 import axios from "axios";
-import { check, Config } from "mirai-ts";
+import { check } from "mirai-ts";
 import schedule from "node-schedule";
 import Bot from "el-bot";
 import { utils } from "el-bot";
-
+import * as Config from "el-bot/dist/types/config";
 /**
  * 请求参数
  * https://developer.hitokoto.cn/sentence/#请求参数
@@ -39,7 +39,7 @@ interface HitokotoParams {
   max_length?: string;
 }
 
-async function getSentence(params: HitokotoParams) {
+async function getSentence(params: HitokotoParams | null) {
   const { data } = await axios.get("https://v1.hitokoto.cn", {
     params: params,
   });
@@ -51,15 +51,15 @@ async function getSentence(params: HitokotoParams) {
 /**
  * 配置
  */
-interface hitokotoConfig {
+interface HitokotoOptions {
   cron?: string;
   target?: Config.Target;
   params?: HitokotoParams;
-  match?: Config.Match[];
+  match?: check.Match[];
 }
 
 // 默认配置
-const hitokoto: hitokotoConfig = {
+const hitokoto: HitokotoOptions = {
   cron: "0 0 * * *",
   match: [{ is: "el say" }, { includes: "说点骚话" }],
 };
@@ -67,9 +67,9 @@ const hitokoto: hitokotoConfig = {
 /**
  * @param config hitokoto 配置
  */
-export default function (ctx: Bot, config: hitokotoConfig): void {
+export default function (ctx: Bot, options: HitokotoOptions): void {
   const mirai = ctx.mirai;
-  utils.config.merge(hitokoto, config);
+  utils.config.merge(hitokoto, options);
 
   if (hitokoto && hitokoto.cron && hitokoto.target) {
     schedule.scheduleJob(hitokoto.cron, async () => {

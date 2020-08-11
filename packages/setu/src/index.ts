@@ -1,4 +1,4 @@
-import { Message, Config, check } from "mirai-ts";
+import { Message, check } from "mirai-ts";
 import axios from "axios";
 import Bot from "el-bot";
 import { utils } from "el-bot";
@@ -16,27 +16,36 @@ interface Image {
   url: string;
 }
 
-export default function (ctx: Bot): void {
+interface SetuOptions {
+  url: string;
+  proxy: string;
+  match: check.Match[];
+  reply: string;
+}
+
+const setu: SetuOptions = {
+  url: "https://el-bot-api.vercel.app/api/setu",
+  proxy: "https://images.weserv.nl/?url=",
+  match: [
+    {
+      is: "不够色",
+    },
+    {
+      includes: ["来", "色图"],
+    },
+  ],
+  reply: "让我找找",
+};
+
+export default function (ctx: Bot, options: SetuOptions): void {
   const mirai = ctx.mirai;
   const config = ctx.el.config;
-  const setu = config.setu || {
-    url: "https://el-bot-api.vercel.app/api/setu",
-    proxy: "https://images.weserv.nl/?url=",
-    match: [
-      {
-        is: "不够色",
-      },
-      {
-        includes: ["来", "色图"],
-      },
-    ],
-    reply: "让我找找",
-  };
+  utils.config.merge(setu, options);
 
   let image: Image;
   if (setu.url) {
     mirai.on("message", (msg) => {
-      setu.match.forEach(async (obj: Config.Match) => {
+      setu.match.forEach(async (obj: check.Match) => {
         if (check.match(msg.plain.toLowerCase(), obj)) {
           if (setu.reply) {
             msg.reply(setu.reply);
