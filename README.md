@@ -4,6 +4,8 @@
 
 此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的官方插件。你可以为其提交 PR，提供给更多人使用。
 
+[插件目录](./TOC.md)
+
 > 此处的插件将由 el-bot 官方进行审核，并发布为 [`@el-bot`](https://www.npmjs.com/org/el-bot) 命名空间下的 npm 包。
 
 ## 在 el-bot 中使用

@@ -18,11 +18,12 @@
     "publish": "lerna publish",
     "publish:force": "lerna publish from-git --force-publish --no-git-tag-version --no-push --yes",
     "release": "lerna publish --conventional-commits",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "generate:TOC": "node scripts/generateTOC.js"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "yarn generate:TOC && lint-staged"
     }
   },
   "lint-staged": {
