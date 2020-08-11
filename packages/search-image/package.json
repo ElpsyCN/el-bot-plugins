@@ -14,5 +14,6 @@
   },
   "dependencies": {
     "sagiri": "^3.1.0"
-  }
+  },
+  "gitHead": "fdf5a0ce3131201d8326c9d1184b94ee70ac38a0"
 }

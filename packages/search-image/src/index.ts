@@ -1,5 +1,5 @@
 import Bot from "el-bot";
-import sagiri, { SagiriResult } from "sagiri";
+import sagiri, { SagiriResult, Options as SagiriOptions } from "sagiri";
 import { Message, MessageType } from "mirai-ts";
 
 /**
@@ -7,6 +7,7 @@ import { Message, MessageType } from "mirai-ts";
  */
 interface SearchImageOptions {
   token: string;
+  options?: SagiriOptions;
 }
 
 /**
@@ -35,7 +36,7 @@ export default async function searchImage(
   options: SearchImageOptions
 ) {
   const mirai = ctx.mirai;
-  const client = sagiri(options.token);
+  const client = sagiri(options.token, options.options);
   let searchImageFlag = false;
 
   mirai.on("message", (msg) => {
@@ -45,19 +46,19 @@ export default async function searchImage(
     }
 
     if (searchImageFlag) {
+      // 退出搜图模式
+      searchImageFlag = false;
+
       msg.messageChain.forEach(async (singleMessage) => {
         if (singleMessage.type === "Image") {
-          const results = await client(singleMessage.url);
           let replyContent = [];
-          replyContent.push(
-            Message.Plain(`共有 ${results.length} 个结果（展示前三个）`)
-          );
-          for (let i = 0; i < 3; i++) {
+          const results = await client(singleMessage.url);
+          const length = options.options.results;
+          replyContent.push(Message.Plain(`返回 ${length} 个结果`));
+          for (let i = 0; i < length; i++) {
             const result = results[i];
             replyContent = replyContent.concat(formatResult(result));
-            console.log(replyContent);
           }
-          console.log(replyContent);
           msg.reply(replyContent);
         }
       });
