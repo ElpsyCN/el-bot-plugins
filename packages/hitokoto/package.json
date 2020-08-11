@@ -11,6 +11,5 @@
   "license": "AGPL-3.0",
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "fdf5a0ce3131201d8326c9d1184b94ee70ac38a0"
+  }
 }

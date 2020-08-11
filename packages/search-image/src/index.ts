@@ -46,9 +46,6 @@ export default async function searchImage(
     }
 
     if (searchImageFlag) {
-      // 退出搜图模式
-      searchImageFlag = false;
-
       msg.messageChain.forEach(async (singleMessage) => {
         if (singleMessage.type === "Image") {
           let replyContent = [];
@@ -60,6 +57,9 @@ export default async function searchImage(
             replyContent = replyContent.concat(formatResult(result));
           }
           msg.reply(replyContent);
+
+          // 退出搜图模式
+          searchImageFlag = false;
         }
       });
     }
