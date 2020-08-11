@@ -1,6 +1,6 @@
 {
   "name": "@el-bot/plugin-search-image",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "以图搜图",
   "main": "dist/index.js",
   "scripts": {
