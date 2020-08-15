@@ -9,4 +9,9 @@
 ```yaml
 search-image:
   token: xxx
+  options:
+    # 返回多少个结果
+    results: 3
 ```
+
+More options in [Sagiri](https://github.com/ClarityCafe/Sagiri).

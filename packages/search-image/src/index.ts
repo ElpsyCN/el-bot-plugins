@@ -50,7 +50,7 @@ export default async function searchImage(
         if (singleMessage.type === "Image") {
           let replyContent = [];
           const results = await client(singleMessage.url);
-          const length = options.options.results;
+          const length = options.options.results || 3;
           replyContent.push(Message.Plain(`返回 ${length} 个结果`));
           for (let i = 0; i < length; i++) {
             const result = results[i];
