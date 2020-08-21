@@ -1,5 +1,5 @@
 {
-  "name": "@el-bot/search",
+  "name": "@el-bot/plugin-search",
   "version": "0.0.1",
   "description": "你不会百度吗？",
   "main": "index.js",
