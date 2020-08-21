@@ -1,0 +1,15 @@
+{
+  "name": "@el-bot/search",
+  "version": "0.0.1",
+  "description": "你不会百度吗？",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "echo index.js",
+    "test": "echo '你不会百度吗？'"
+  },
+  "author": "YunYouJun",
+  "license": "AGPL-3.0"
+}
