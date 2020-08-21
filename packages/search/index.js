@@ -5,11 +5,6 @@ module.exports = (ctx) => {
     const keyword = msg.plain.slice(engineString.length).trim();
     const engineList = [
       {
-        id: "buhuibaidu",
-        keywords: ["不会百度"],
-        url: "https://buhuibaidu.me/?s=",
-      },
-      {
         id: "baidu",
         keywords: ["百度", "度娘", "baidu"],
         url: "https://www.baidu.com/s?wd=",
@@ -25,7 +20,7 @@ module.exports = (ctx) => {
         url: "https://cn.bing.com/search?q=",
       },
     ];
-    if (engineString.includes("不会百度吗")) {
+    if (engineString.includes("不会百度")) {
       msg.reply("https://buhuibaidu.me/?s=" + keyword);
     } else {
       engineList.forEach((engine) => {
