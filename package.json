@@ -5,7 +5,7 @@
   "workdpaces": [
     "packages/*"
   ],
-  "description": "[el-bot](https://github.com/ElpsyCN/el-bot/) 可用的官方插件。",
+  "description": "[el-bot](https://github.com/YunYouJun/el-bot/) 可用的官方插件。",
   "main": "index.js",
   "scripts": {
     "lerna": "lerna",

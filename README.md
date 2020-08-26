@@ -2,7 +2,7 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-此处提供一些 [el-bot](https://github.com/ElpsyCN/el-bot/) 可用的官方插件。你可以为其提交 PR，提供给更多人使用。
+此处提供一些 [el-bot](https://github.com/YunYouJun/el-bot/) 可用的官方插件。你可以为其提交 PR，提供给更多人使用。
 
 ## [插件目录](./TOC.md)
 
@@ -118,6 +118,6 @@ niubi:
 
 ## 相关
 
-- [el-bot](https://github.com/ElpsyCN/el-bot)：机器人主体
+- [el-bot](https://github.com/YunYouJun/el-bot)：机器人主体
 - [el-bot-api](https://github.com/ElpsyCN/el-bot-api): 提供一些插件的默认 API
 - [el-bot-template](https://github.com/ElpsyCN/el-bot-template)：机器人模版

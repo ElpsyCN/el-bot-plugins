@@ -21,7 +21,7 @@ module.exports = (ctx) => {
       },
     ];
     if (engineString.includes("不会百度")) {
-      msg.reply("https://buhuibaidu.me/?s=" + keyword);
+      msg.reply("https://buhuibaidu.me/?s=" + encodeURI(keyword));
     } else {
       engineList.forEach((engine) => {
         if (engine.keywords.includes(engineString)) {
