@@ -2,7 +2,8 @@ module.exports = (ctx) => {
   const mirai = ctx.mirai;
   mirai.on("message", (msg) => {
     const engineString = msg.plain.split(" ")[0];
-    const keyword = msg.plain.slice(engineString.length).trim();
+    let keyword = msg.plain.slice(engineString.length).trim();
+    keyword = encodeURI(keyword);
     const engineList = [
       {
         id: "baidu",
@@ -21,7 +22,7 @@ module.exports = (ctx) => {
       },
     ];
     if (engineString.includes("不会百度")) {
-      msg.reply("https://buhuibaidu.me/?s=" + encodeURI(keyword));
+      msg.reply("https://buhuibaidu.me/?s=" + keyword);
     } else {
       engineList.forEach((engine) => {
         if (engine.keywords.includes(engineString)) {
