@@ -1,6 +1,6 @@
 {
   "name": "@el-bot/plugin-search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "你不会百度吗？",
   "main": "index.js",
   "publishConfig": {
