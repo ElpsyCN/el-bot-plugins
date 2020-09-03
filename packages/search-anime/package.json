@@ -1,0 +1,11 @@
+{
+    "name": "@el-bot/plugin-search-anime",
+    "version": "0.0.1",
+    "description": "搜番",
+    "main": "index.js",
+    "publishConfig": {
+      "access": "public"
+    },
+    "author": "morinoyuki",
+    "license": "AGPL-3.0"
+  }
