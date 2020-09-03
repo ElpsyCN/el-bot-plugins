@@ -1,6 +1,5 @@
 const { Message, log } = require('mirai-ts');
 const TraceMoe = require('tracemoe-helper');
-const { getImage } = require('../../utils');
 const { default: Bot } = require('el-bot');
 
 let api;
@@ -18,7 +17,7 @@ async function formatResult(data) {
         }`),
         Message.Plain(`\n话数：${data.docs[0].episode || '未知'}`)
     ];
-    if (!data.docs[0].is_adult) r = r.concat([Message.Plain('\n'),await getImage(await api.previewImage(data.docs[0].anilist_id, data.docs[0].filename, data.docs[0].at, data.docs[0].tokenthumb))]);
+    // if (!data.docs[0].is_adult) r = r.concat([Message.Plain('\n'), Message.Image(null, await api.previewImage(data.docs[0].anilist_id, data.docs[0].filename, data.docs[0].at, data.docs[0].tokenthumb))]);
     return r;
 }
 
@@ -37,7 +36,7 @@ async function traceSearch(url) {
     }
 }
 /**
- * 搜番
+ * 搜图
  * @param {Bot} ctx 
  * @param {Object} options 
  */
