@@ -10,4 +10,3 @@ api key可有可无，非必须。
 search-anime:
   token: xxx
 ```
-
