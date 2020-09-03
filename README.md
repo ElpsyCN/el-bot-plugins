@@ -1,5 +1,6 @@
 # 官方插件
 
+![el-bot-plugins](https://github.com/ElpsyCN/el-bot-plugins/workflows/el-bot-plugins/badge.svg)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 此处提供一些 [el-bot](https://github.com/YunYouJun/el-bot/) 可用的官方插件，以及社区插件的广告。
