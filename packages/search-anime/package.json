@@ -1,11 +1,14 @@
 {
-    "name": "@el-bot/plugin-search-anime",
-    "version": "0.0.1",
-    "description": "搜番",
-    "main": "index.js",
-    "publishConfig": {
-      "access": "public"
-    },
-    "author": "morinoyuki",
-    "license": "AGPL-3.0"
+  "name": "@el-bot/plugin-search-anime",
+  "version": "0.0.1",
+  "description": "以图搜番",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "morinoyuki",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "tracemoe-helper": "^1.0.3"
   }
+}补全
