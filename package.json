@@ -52,6 +52,7 @@
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",
+    "js-yaml": "^3.14.0",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",

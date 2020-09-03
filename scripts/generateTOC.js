@@ -13,7 +13,9 @@ function generateMarkdown(plugins) {
   for (let i = 0; i < plugins.length; i++) {
     const plugin = plugins[i];
 
-    const name = `[${plugin.name}](./packages/${plugin.folder})`;
+    const name = plugin.folder
+      ? `[${plugin.name}](./packages/${plugin.folder})`
+      : `[${plugin.name}](https://github.com/${plugin.author}/${plugin.name})`;
     const badge = `[![npm](https://img.shields.io/npm/v/${plugin.name})](https://www.npmjs.com/package/${plugin.name})`;
     const author = plugin.author.name
       ? `[${plugin.author.name}](${plugin.author.url})`
@@ -25,21 +27,50 @@ function generateMarkdown(plugins) {
   return toc_md;
 }
 
-fs.readdir("./packages", (err, files) => {
-  if (err) console.log(err);
+/**
+ * 生成官方插件目录
+ */
+function generateOfficialPluginsToc() {
+  fs.readdir("./packages", (err, files) => {
+    if (err) console.log(err);
 
-  let plugins = [];
-  files.forEach((file) => {
-    try {
-      const pkg = require(`../packages/${file}/package.json`);
-      pkg.folder = file;
-      plugins.push(pkg);
-    } catch (err) {}
+    let plugins = [];
+    files.forEach((file) => {
+      try {
+        const pkg = require(`../packages/${file}/package.json`);
+        pkg.folder = file;
+        plugins.push(pkg);
+      } catch (err) {}
+    });
+
+    const md = generateMarkdown(plugins);
+    fs.writeFile("TOC.md", md, (err) => {
+      if (err) throw err;
+      console.log(`成功生成插件目录，共 ${plugins.length} 个插件。`);
+    });
   });
+}
 
-  const md = generateMarkdown(plugins);
-  fs.writeFile("TOC.md", md, (err) => {
+/**
+ * 生成社区插件目录
+ */
+function generateCommunityPluginsToc() {
+  try {
+    fs.mkdirSync("./dist/");
+  } catch ({ code }) {
+    if (code !== "EEXIST") return;
+  }
+
+  const yaml = require("js-yaml");
+  const data = yaml.safeLoad(fs.readFileSync("./data/plugins.yml", "utf8"));
+  const communityPlugins = data.community;
+  const communityMd = generateMarkdown(communityPlugins);
+  fs.writeFile("./dist/community.md", communityMd, (err) => {
     if (err) throw err;
-    console.log(`成功生成插件目录，共 ${plugins.length} 个插件。`);
+    console.log(`成功生成社区插件目录，共 ${communityPlugins.length} 个插件。`);
   });
-});
+}
+
+// start
+generateOfficialPluginsToc();
+generateCommunityPluginsToc();

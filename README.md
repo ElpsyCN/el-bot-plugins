@@ -2,17 +2,36 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-此处提供一些 [el-bot](https://github.com/YunYouJun/el-bot/) 可用的官方插件。你可以为其提交 PR，提供给更多人使用。
+此处提供一些 [el-bot](https://github.com/YunYouJun/el-bot/) 可用的官方插件，以及社区插件的广告。
+
+你可以直接为其提交 PR 或留下你的插件链接，提供给更多人使用。
 
 ## [插件目录](./TOC.md)
 
 > 此处的插件将由 el-bot 官方进行审核，并发布为 [`@el-bot`](https://www.npmjs.com/org/el-bot) 命名空间下的 npm 包。
+
+## [社区插件](https://elpsy.cn/el-bot-plugins/community.html)
+
+你也可以为 [./data/plugins.yml](./data/plugins.yml) 提交 PR，留下你的仓库地址来给你的插件做广告。
+
+请遵循 `el-bot-plugin-xxx` 的命名规范。
+
+```yaml
+community:
+  - name: el-bot-plugin-xxx # 插件名称
+    author: 插件作者 # 你的 GitHub 用户名
+    description: 插件描述
+```
 
 ## 在 el-bot 中使用
 
 ```sh
 npm install @el-bot/plugin-niubi
 # yarn add @el-bot/plugin-niubi
+
+# 按照社区插件
+# npm install el-bot-plugin-xxx
+# yarn add el-bot-plugin-xxx
 ```
 
 修改你的配置文件：
@@ -73,7 +92,7 @@ niubi:
 - 须附带 README.md 作为相关说明文档。
 - 并填写上名称、版本、描述、作者、协议等，这些将会在加载插件时，作为插件的信息记录。
 - 因为 mirai 属于 [AGPL-3.0](https://github.com/mamoe/mirai/blob/master/LICENSE) 协议，您提交在本仓库的插件将须默认使用 AGPL-3.0 协议。
-- `dist` 文件无须提交，将由仓库统一发布编译并发布于 `@el-bot` 命名空间下。
+- `dist` 文件无须提交，将由仓库统一编译并发布于 `@el-bot` 命名空间下。
 
 目录结构：
 
@@ -116,8 +135,4 @@ niubi:
 
 入口文件为 `dist/index.js`，发布时将自动编译 `src/index.ts` 生成。
 
-## 相关
-
-- [el-bot](https://github.com/YunYouJun/el-bot)：机器人主体
-- [el-bot-api](https://github.com/ElpsyCN/el-bot-api): 提供一些插件的默认 API
-- [el-bot-template](https://github.com/ElpsyCN/el-bot-template)：机器人模版
+## [相关项目](https://github.com/YunYouJun/el-bot#相关项目)
