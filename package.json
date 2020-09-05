@@ -47,16 +47,16 @@
   },
   "homepage": "https://github.com/ElpsyCN/el-bot-plugins#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.7.1",
-    "@typescript-eslint/parser": "^3.7.1",
-    "el-bot": "^0.3.21",
-    "eslint": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^4.0.1",
+    "@typescript-eslint/parser": "^4.0.1",
+    "el-bot": "^0.4.0",
+    "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",
     "js-yaml": "^3.14.0",
     "lerna": "^3.22.1",
-    "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5",
-    "typescript": "^3.9.7"
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1",
+    "typescript": "^4.0.2"
   }
 }
