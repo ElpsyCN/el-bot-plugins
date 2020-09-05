@@ -15,7 +15,7 @@
     "clean": "lerna exec -- rm -rf dist",
     "link": "lerna exec -- yarn link",
     "lint": "eslint --fix . && prettier --write .",
-    "prepublish": "lerna run build",
+    "prepublishOnly": "lerna run build",
     "publish": "lerna publish",
     "publish:force": "lerna publish from-git --force-publish --no-git-tag-version --no-push --yes",
     "release": "lerna publish --conventional-commits",
