@@ -23,7 +23,7 @@ Bot: 世界上没有定理，只有 群主 允许其正确的命题。
 ## 配置
 
 - `url`: API 地址 或本地 JSON 数据的文件所在路径
-- `match` 见[配置讲解](https://docs.bot.elpsy.cn/js/config.html)。
+- `match` 见[配置讲解](https://docs.bot.elpsy.cn/config.html)。
 
 ```yaml
 niubi:

@@ -21,7 +21,7 @@ match 为一个数组，可以包含多种匹配的方式，每种方式下均�
 
 params 字段各含义见 [请求参数 | 一言开发者中心](https://developer.hitokoto.cn/sentence/)
 
-添加 `cron` 和 `target` 可定时向某群发送一条一言内容。（此处请见[配置讲解](https://docs.bot.elpsy.cn/js/config.html#定时任务)）
+添加 `cron` 和 `target` 可定时向某群发送一条一言内容。（此处请见[配置讲解](https://docs.bot.elpsy.cn/config.html#定时任务)）
 
 ## 配置
 

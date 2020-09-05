@@ -66,9 +66,9 @@ plugins:
 
 插件可以默认使用 [mirai-ts](https://github.com/YunYouJun/mirai-ts) 中的 API 以提升开发效率。
 
-同时也可以参考 [配置讲解](https://docs.bot.elpsy.cn/js/config.html) 中的一些配置设计，并可直接引入 el-bot 中已有的一些根据配置匹配、发送等函数。
+同时也可以参考 [配置讲解](https://docs.bot.elpsy.cn/config.html) 中的一些配置设计，并可直接引入 el-bot 中已有的一些根据配置匹配、发送等函数。
 
-更多插件开发内容见 [插件系统](https://docs.bot.elpsy.cn/js/plugins/)。
+更多插件开发内容见 [插件系统](https://docs.bot.elpsy.cn/plugins/)。
 
 ### 命名规则
 
