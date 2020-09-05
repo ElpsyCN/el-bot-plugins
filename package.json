@@ -10,8 +10,8 @@
   "scripts": {
     "lerna": "lerna",
     "bootstrap": "lerna bootstrap",
-    "prebuild": "lerna exec -- yarn install",
-    "build": "lerna exec -- yarn build",
+    "prebuild": "lerna exec -- npm install",
+    "build": "lerna exec -- npm run build --if-present",
     "clean": "lerna exec -- rm -rf dist",
     "link": "lerna exec -- yarn link",
     "lint": "eslint --fix . && prettier --write .",

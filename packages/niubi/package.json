@@ -7,7 +7,6 @@
     "access": "public"
   },
   "scripts": {
-    "build": "echo index.js",
     "test": "echo '@某人 nb'"
   },
   "author": "YunYouJun",

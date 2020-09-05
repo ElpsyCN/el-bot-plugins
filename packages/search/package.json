@@ -7,7 +7,6 @@
     "access": "public"
   },
   "scripts": {
-    "build": "echo index.js",
     "test": "echo '你不会百度吗？'"
   },
   "author": "YunYouJun",

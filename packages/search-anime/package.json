@@ -10,8 +10,5 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "tracemoe-helper": "^1.0.3"
-  },
-  "scripts": {
-    "build": "echo 'do not need build'"
   }
 }
