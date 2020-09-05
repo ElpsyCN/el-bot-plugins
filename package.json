@@ -10,6 +10,7 @@
   "scripts": {
     "lerna": "lerna",
     "bootstrap": "lerna bootstrap",
+    "prebuild": "lerna exec -- yarn install",
     "build": "lerna exec -- yarn build",
     "clean": "lerna exec -- rm -rf dist",
     "link": "lerna exec -- yarn link",
