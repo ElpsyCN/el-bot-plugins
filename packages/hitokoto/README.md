@@ -1,5 +1,22 @@
 # 一言 hitokoto
 
+## 已弃用
+
+你可以直接使用内置的 answer 插件实现原插件的功能，而无需额外安装配置。
+
+例如：
+
+```yaml
+answer:
+  - includes:
+      - 说点
+      - 骚话
+    api: https://v1.hitokoto.cn/
+    reply: ${data.hitokoto} ——「${data.from}」
+```
+
+---
+
 > [一言开发者中心](https://developer.hitokoto.cn/)
 
 - 作者：[@YunYouJun](https://github.com/YunYouJun)

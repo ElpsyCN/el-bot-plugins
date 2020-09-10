@@ -13,9 +13,13 @@ function generateMarkdown(plugins) {
   for (let i = 0; i < plugins.length; i++) {
     const plugin = plugins[i];
 
-    const name = plugin.folder
+    let name = plugin.folder
       ? `[${plugin.name}](./packages/${plugin.folder})`
       : `[${plugin.name}](https://github.com/${plugin.author}/${plugin.name})`;
+
+    if (plugin.deprecated) {
+      name += "（已弃用）";
+    }
     const badge = `[![npm](https://img.shields.io/npm/v/${plugin.name})](https://www.npmjs.com/package/${plugin.name})`;
     const author = plugin.author.name
       ? `[${plugin.author.name}](${plugin.author.url})`
