@@ -11,6 +11,8 @@
 
 > 此处的插件将由 el-bot 官方进行审核，并发布为 [`@el-bot`](https://www.npmjs.com/org/el-bot) 命名空间下的 npm 包。
 
+如果 npm 包尚不存在，则该插件可能正在开发中。
+
 ## [社区插件](https://elpsy.cn/el-bot-plugins/community.html)
 
 你也可以为 [./data/plugins.yml](./data/plugins.yml) 提交 PR，留下你的仓库地址来给你的插件做广告。

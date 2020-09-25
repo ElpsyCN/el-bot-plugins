@@ -1,29 +1,10 @@
-import { Message, check } from "mirai-ts";
-import axios from "axios";
-import Bot from "el-bot";
-import { utils } from "el-bot";
+const { Message, check } = require("mirai-ts");
+const axios = require("axios");
+const Bot = require("el-bot");
+const { utils } = require("el-bot");
+const { SetuImage, SetuOptions } = require(".");
 
-interface SetuImage {
-  url: string;
-}
-
-function getRandomImage(image: SetuImage[]) {
-  const index = Math.floor(Math.random() * image.length);
-  return image[index];
-}
-
-interface Image {
-  url: string;
-}
-
-interface SetuOptions {
-  url: string;
-  proxy: string;
-  match: check.Match[];
-  reply: string;
-}
-
-const setu: SetuOptions = {
+const setu = {
   url: "https://el-bot-api.vercel.app/api/setu",
   proxy: "https://images.weserv.nl/?url=",
   match: [
@@ -37,15 +18,28 @@ const setu: SetuOptions = {
   reply: "让我找找",
 };
 
-export default function (ctx: Bot, options: SetuOptions): void {
+/**
+ * 获取随机图片
+ * @param {SetuImage[]} image
+ */
+function getRandomImage() {
+  const index = Math.floor(Math.random() * image.length);
+  return image[index];
+}
+
+/**
+ *
+ * @param {Bot} ctx
+ * @param {SetuOptions} options
+ */
+export default function (ctx, options) {
   const mirai = ctx.mirai;
-  const config = ctx.el.config;
   utils.config.merge(setu, options);
 
-  let image: Image;
+  let image;
   if (setu.url) {
     mirai.on("message", (msg) => {
-      setu.match.forEach(async (obj: check.Match) => {
+      setu.match.forEach(async (obj) => {
         if (check.match(msg.plain.toLowerCase(), obj)) {
           if (setu.reply) {
             msg.reply(setu.reply);
@@ -56,7 +50,7 @@ export default function (ctx: Bot, options: SetuOptions): void {
             image = data;
             if (!image.url) image = data.data[0];
           } else {
-            const setuJson = await import(setu.url);
+            const setuJson = await require(setu.url);
             image = getRandomImage(setuJson.image);
           }
 
