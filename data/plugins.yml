@@ -1,4 +1,4 @@
 community:
-  - name: el-bot-plugin-xxx
-    author: 插件作者
-    description: 插件描述
+  - name: el-bot-plugin-music
+    author: morinoyuki
+    description: 网易和 QQ 点歌
