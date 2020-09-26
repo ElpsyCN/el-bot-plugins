@@ -4,7 +4,7 @@ const { utils } = require("el-bot");
 
 let niubiJson = null;
 let niubi = {
-  url: "https://el-bot-api.vercel.app/api/niubi",
+  url: "https://el-bot-api.vercel.app/api/words/niubi",
   match: [
     {
       re: "来点(\\S*)笑话",

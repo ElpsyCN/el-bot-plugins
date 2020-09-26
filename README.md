@@ -82,7 +82,7 @@ plugins:
 
 ```yaml
 niubi:
-  url: https://el-bot-api.vercel.app/api/niubi
+  url: https://el-bot-api.vercel.app/api/words/niubi
   match:
     - re:
         pattern: 来点(\S*)笑话

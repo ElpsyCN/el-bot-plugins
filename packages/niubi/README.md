@@ -27,7 +27,7 @@ Bot: 世界上没有定理，只有 群主 允许其正确的命题。
 
 ```yaml
 niubi:
-  url: https://el-bot-api.vercel.app/api/niubi
+  url: https://el-bot-api.vercel.app/api/words/niubi
   match:
     - re:
         pattern: 来点(\S*)笑话
