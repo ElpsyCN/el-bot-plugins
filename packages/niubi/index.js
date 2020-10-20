@@ -45,7 +45,7 @@ module.exports = function (ctx) {
       const str = check.match(msg.plain.toLowerCase(), obj);
       if (!str) {
         return;
-      } else if (Array.isArray(str)) {
+      } else if (Array.isArray(str) && str[1]) {
         name = str[1];
       }
 
