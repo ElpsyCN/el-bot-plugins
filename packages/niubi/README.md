@@ -31,5 +31,5 @@ niubi:
   match:
     - re:
         pattern: 来点(\S*)笑话
-    - includes: nb
+    - is: nb
 ```

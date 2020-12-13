@@ -10,7 +10,7 @@ let niubi = {
       re: "来点(\\S*)笑话",
     },
     {
-      includes: "nb",
+      is: "nb",
     },
   ],
 };
