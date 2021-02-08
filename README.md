@@ -7,6 +7,8 @@
 
 你可以直接为其提交 PR 或留下你的插件链接，提供给更多人使用。
 
+部分插件逐步使用 ts 重写并移动到 [el-bot/src/plugins](https://github.com/YunYouJun/el-bot/blob/dev/src/plugins/)。
+
 ## [插件目录](./TOC.md)
 
 > 此处的插件将由 el-bot 官方进行审核，并发布为 [`@el-bot`](https://www.npmjs.com/org/el-bot) 命名空间下的 npm 包。

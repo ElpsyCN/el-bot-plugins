@@ -27,7 +27,7 @@ async function getRandomSentence(name) {
   return sentence;
 }
 
-module.exports = function (ctx) {
+module.exports = function (ctx, options) {
   const config = ctx.el.config;
   const mirai = ctx.mirai;
 
@@ -50,7 +50,7 @@ module.exports = function (ctx) {
       }
 
       msg.messageChain.some((singleMessage) => {
-        if (singleMessage.type === "At") {
+        if (singleMessage.type === "At" && singleMessage.display) {
           name = "「" + singleMessage.display.slice(1) + "」";
           return true;
         }

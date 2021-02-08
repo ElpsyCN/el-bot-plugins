@@ -1,3 +1,4 @@
+// @ts-nocheck
 const fs = require("fs");
 
 /**
@@ -66,13 +67,17 @@ function generateCommunityPluginsToc() {
   }
 
   const yaml = require("js-yaml");
-  const data = yaml.safeLoad(fs.readFileSync("./data/plugins.yml", "utf8"));
-  const communityPlugins = data.community;
-  const communityMd = generateMarkdown(communityPlugins);
-  fs.writeFile("./dist/community.md", communityMd, (err) => {
-    if (err) throw err;
-    console.log(`成功生成社区插件目录，共 ${communityPlugins.length} 个插件。`);
-  });
+  const data = yaml.load(fs.readFileSync("./data/plugins.yml", "utf8"));
+  if (data.community) {
+    const communityPlugins = data.community;
+    const communityMd = generateMarkdown(communityPlugins);
+    fs.writeFile("./dist/community.md", communityMd, (err) => {
+      if (err) throw err;
+      console.log(
+        `成功生成社区插件目录，共 ${communityPlugins.length} 个插件。`
+      );
+    });
+  }
 }
 
 // start
