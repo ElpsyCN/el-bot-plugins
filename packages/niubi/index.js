@@ -28,12 +28,9 @@ async function getRandomSentence(name) {
 }
 
 module.exports = function (ctx, options) {
-  const config = ctx.el.config;
-  const mirai = ctx.mirai;
+  const { mirai } = ctx;
 
   // 覆盖默认配置
-  utils.config.merge(niubi, config.niubi);
-
   mirai.on("message", (msg) => {
     let name = "我";
 
