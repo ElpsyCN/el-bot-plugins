@@ -15,6 +15,8 @@
 
 如果 npm 包尚不存在，则该插件可能正在开发中。
 
+- [@el-bot/plugin-niubi] & [@el-bot/plugin-setu] had been moved to [el-bot/plugins](https://github.com/YunYouJun/el-bot/tree/dev/plugins).
+
 ## [社区插件](https://elpsy.cn/el-bot-plugins/community.html)
 
 你也可以为 [./data/plugins.yml](./data/plugins.yml) 提交 PR，留下你的仓库地址来给你的插件做广告。
